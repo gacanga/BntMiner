@@ -1,0 +1,34 @@
+BntMiner - mineur GPU NVIDIA pour Blocknet (BNT, blocknetcrypto.com), Argon2id 2 Gio
+Windows x64, compile avec CUDA 12.9 (code natif Pascal sm_61 : P104-100, GTX 1070/1080)
+
+Open source (Apache-2.0), SANS frais de developpeur.
+Pool : bntpool.com (stratum+tcp://bntpool.com:3333).
+A ne pas confondre avec l'ancien projet Blocknet (BLOCK) ni avec Bancor (BNT).
+
+DEMARRAGE RAPIDE
+  1. Ouvrez bntminer.conf et remplacez YOUR_BLOCKNET_ADDRESS par votre adresse Blocknet
+     (ou un nom court blocknet.id comme @nom) ; "rig1" est le nom du worker, modifiable.
+  2. Double-cliquez sur start_bnt.bat. Il relance le mineur automatiquement
+     et ecrit bntminer.log ; fermez la fenetre pour l'arreter.
+
+Autres scripts
+  test.bat   tests de calcul (CPU, puis chaque GPU contre des hashs de reference)
+  bench.bat  mesure des H/s pendant 120 s (arretez le minage avant)
+
+Prerequis
+  - Windows 10/11 x64
+  - pilote NVIDIA compatible CUDA 12 (R525 ou plus recent ; R580 est la derniere
+    branche pour Pascal). Rien d'autre a installer.
+  - 2 Gio de memoire GPU libre par hash calcule en parallele ("lane") : une carte
+    de 8 Go fait 3 lanes
+  - Les GPU plus recents executent le code PTX via le JIT du pilote (fonctionne,
+    non optimise).
+
+Mesure : P104-100 : ~1,5 H/s par carte (3 lanes), environ 66 W.
+
+Fichiers : bntminer.exe, bgpu.dll, cudart64_12.dll (runtime CUDA NVIDIA), vcruntime140.dll,
+vcruntime140_1.dll, msvcp140.dll (runtime Microsoft Visual C++), ca-bundle.crt
+(certificats pour les pools TLS), bntminer.conf, start_bnt.bat, test.bat, bench.bat, LICENSE, NOTICE.
+Ligne de commande : bntminer.exe --help
+
+Code source, documentation, versions publiees : https://github.com/gacanga/BntMiner

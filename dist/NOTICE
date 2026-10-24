@@ -1,0 +1,22 @@
+BntMiner - GPU miner for Blocknet (BNT, blocknetcrypto.com), Argon2id 2 GiB t=1 p=1.
+Copyright 2026 gacanga.  Licensed under the Apache License 2.0 (see LICENSE).
+No developer fee.
+
+The Argon2id CUDA engine (gpu/bnt_gpu.cu) and the reference code (src/argon_ref.h,
+written from RFC 9106 / RFC 7693) are original work.
+The pool protocol follows the stratum of bntpool.com as implemented by the seine miner
+(github.com/zpalmtree/seine, BSD-3-Clause); no seine code is included.
+Correctness references used for the tests only (not linked into the miner):
+  - the Rust argon2 0.5 crate (RustCrypto), called exactly like Blocknet core
+    (github.com/blocknetprivacy/core, crypto-rs/src/pow.rs): tools/bntref -> tests/vectors.txt.
+The stratum client (json.h, tls_conn.*) comes from FiloMiner / NullMiner (same author, Apache-2.0).
+
+The Windows release zip also contains third-party components (not in this repository):
+  - OpenSSL (Apache-2.0), statically linked into bntminer.exe (MSYS2 MINGW64 package);
+  - the MinGW-w64 runtime, winpthreads and libstdc++/libgcc (permissive licences, GCC
+    Runtime Library Exception), statically linked into bntminer.exe;
+  - cudart64_12.dll, the NVIDIA CUDA runtime, redistributed under the NVIDIA CUDA Toolkit
+    EULA (used by bgpu.dll);
+  - vcruntime140.dll, vcruntime140_1.dll, msvcp140.dll, the Microsoft Visual C++ 2015-2022
+    runtime (redistributable under the Visual Studio licence terms, used by bgpu.dll);
+  - ca-bundle.crt, the Mozilla CA certificate bundle (MPL-2.0), from MSYS2.

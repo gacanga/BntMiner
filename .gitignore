@@ -1,0 +1,16 @@
+# build outputs and local state
+bin/
+dev/
+logs/
+run/
+release/
+build/
+target/
+rel/
+*.exe
+*.dll
+*.lib
+*.exp
+*.obj
+*.o
+Cargo.lock
